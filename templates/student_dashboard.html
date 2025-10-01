@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+<div class="dashboard">
 <h1>Welcome, Student!</h1>
 
 <h2>Courses</h2>
@@ -22,15 +23,16 @@
 {% if assignments %}
     <ul>
     {% for assignment in assignments %}
-        <li>{{ assignment.title }} ({{ assignment.course_obj.title }}): 
-        {{ assignment.description }} 
-        <a href="{{ url_for('submit_assignment', assignment_id=assignment.id) }}">Submit</a></li>
+        <li>{{ assignment.title }} ({{ assignment.course_obj.title }}): {{ assignment.description }}
+            <a href="{{ url_for('submit_assignment', assignment_id=assignment.id) }}" class="btn-small">Submit</a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No assignments available.</p>
 {% endif %}
 
-<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+</div>
 </body>
 </html>

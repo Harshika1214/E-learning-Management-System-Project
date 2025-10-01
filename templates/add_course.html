@@ -5,12 +5,16 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+<div class="form-container">
 <h2>Add Course</h2>
 <form method="POST">
-    Title: <input type="text" name="title" required><br><br>
-    Description: <textarea name="description" required></textarea><br><br>
+    <label>Course Title:</label>
+    <input type="text" name="title" required><br>
+    <label>Description:</label>
+    <textarea name="description" required></textarea><br>
     <input type="submit" value="Add Course">
 </form>
-<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+<a href="{{ url_for('view_courses') }}">View Courses</a>
+</div>
 </body>
 </html>

@@ -1,84 +1,75 @@
-/* -----------------------------
-   Basic Reset & Body
------------------------------ */
+/* ==============================
+   General Body & Typography
+============================== */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 20px;
+    background-color: #f4f4f4;
     color: #333;
 }
 
-/* -----------------------------
-   Headings
------------------------------ */
 h1, h2, h3 {
     color: #2c3e50;
-    text-align: center;
 }
 
-/* -----------------------------
-   Links
------------------------------ */
 a {
-    color: #3498db;
     text-decoration: none;
+    color: #3498db;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #2980b9;
 }
 
-/* -----------------------------
+/* ==============================
    Forms
------------------------------ */
+============================== */
 form {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #fff;
+    background: #fff;
     padding: 20px;
+    margin: 20px 0;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="number"],
 textarea,
 select {
     width: 100%;
     padding: 10px;
-    margin: 8px 0 15px 0;
+    margin: 6px 0 15px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-input[type="submit"],
-button {
+input[type="submit"], button {
     background-color: #3498db;
     color: white;
-    padding: 10px 18px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-input[type="submit"]:hover,
-button:hover {
+input[type="submit"]:hover, button:hover {
     background-color: #2980b9;
 }
 
-/* -----------------------------
+/* ==============================
    Tables
------------------------------ */
+============================== */
 table {
-    width: 90%;
-    margin: 20px auto;
+    width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 th, td {
@@ -92,81 +83,75 @@ th {
     color: white;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+tr:hover {
+    background-color: #f1f1f1;
 }
 
-/* -----------------------------
-   Navigation Links / Buttons
------------------------------ */
+/* ==============================
+   Navigation
+============================== */
 .nav {
-    text-align: center;
-    margin: 15px 0;
+    margin: 10px 0 20px 0;
 }
 
 .nav a {
-    margin: 0 10px;
-    padding: 8px 15px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 4px;
-}
-
-.nav a:hover {
-    background-color: #2980b9;
-}
-
-/* -----------------------------
-   Role Highlighting
------------------------------ */
-.student-role {
-    color: #2ecc71;
+    margin-right: 15px;
     font-weight: bold;
 }
 
-.teacher-role {
-    color: #e67e22;
-    font-weight: bold;
+/* ==============================
+   Dashboards
+============================== */
+.dashboard {
+    display: flex;
+    flex-direction: column;
 }
 
-.admin-role {
-    color: #c0392b;
-    font-weight: bold;
+.dashboard h2 {
+    margin-top: 20px;
 }
 
-/* -----------------------------
+/* ==============================
    Flash Messages
------------------------------ */
+============================== */
 .flash {
-    width: 90%;
-    margin: 10px auto;
     padding: 10px;
-    background-color: #f1c40f;
-    color: #2c3e50;
-    border-radius: 4px;
-    text-align: center;
-}
-
-/* -----------------------------
-   Submission / Review Section
------------------------------ */
-.submission {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    color: white;
 }
 
-textarea {
-    resize: vertical;
+.flash-success {
+    background-color: #2ecc71;
 }
 
-/* -----------------------------
+.flash-error {
+    background-color: #e74c3c;
+}
+
+/* ==============================
    Responsive Design
------------------------------ */
+============================== */
 @media screen and (max-width: 768px) {
-    table, form {
-        width: 95%;
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        display: none;
+    }
+
+    td {
+        padding-left: 50%;
+        position: relative;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        font-weight: bold;
+        padding-left: 15px;
     }
 }

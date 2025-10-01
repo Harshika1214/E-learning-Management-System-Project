@@ -5,20 +5,22 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+<div class="form-container">
 <h2>Edit Assignment</h2>
 <form method="POST">
-    Title: <input type="text" name="title" value="{{ assignment.title }}" required><br><br>
-    Description: <textarea name="description" required>{{ assignment.description }}</textarea><br><br>
-    Course:
+    <label>Title:</label>
+    <input type="text" name="title" value="{{ assignment.title }}" required><br>
+    <label>Description:</label>
+    <textarea name="description" required>{{ assignment.description }}</textarea><br>
+    <label>Course:</label>
     <select name="course_id" required>
         {% for course in courses %}
-        <option value="{{ course.id }}" {% if assignment.course_id == course.id %}selected{% endif %}>
-            {{ course.title }}
-        </option>
+        <option value="{{ course.id }}" {% if course.id == assignment.course_id %}selected{% endif %}>{{ course.title }}</option>
         {% endfor %}
-    </select><br><br>
+    </select><br>
     <input type="submit" value="Update Assignment">
 </form>
-<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+<a href="{{ url_for('view_assignments') }}">Back to Assignments</a>
+</div>
 </body>
 </html>

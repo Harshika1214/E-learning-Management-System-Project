@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Submissions</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="dashboard">
+<h2>Review Submissions</h2>
+<form method="POST">
+<table>
+<tr>
+    <th>Student ID</th>
+    <th>Content</th>
+    <th>Marks</th>
+    <th>Feedback</th>
+</tr>
+{% for sub in submissions %}
+<tr>
+    <td>{{ sub.student_id }}</td>
+    <td>{{ sub.content }}</td>
+    <td><input type="number" name="marks_{{ sub.id }}" value="{{ sub.marks or 0 }}"></td>
+    <td><input type="text" name="feedback_{{ sub.id }}" value="{{ sub.feedback or '' }}"></td>
+</tr>
+{% endfor %}
+</table>
+<input type="submit" value="Save Feedback">
+</form>
+<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+</div>
+</body>
+</html>

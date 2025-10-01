@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -27,5 +28,6 @@ class Submission(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     assignment_id = db.Column(db.Integer, db.ForeignKey('assignment.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    submission_date = db.Column(db.DateTime, default=datetime.utcnow)
     marks = db.Column(db.Integer, nullable=True)
     feedback = db.Column(db.Text, nullable=True)
