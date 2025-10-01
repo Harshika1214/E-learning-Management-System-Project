@@ -1,11 +1,11 @@
-# 🎓 E-Learning Management System  
+#  E-Learning Management System  
 
 An online platform for managing courses, assignments, and student–teacher interactions.  
 This project allows **teachers to create/manage courses and assignments**, while **students can enroll, submit assignments, and receive feedback & marks**.  
 
 ---
 
-## 🚀 Features  
+##  Features  
 
 ### User Authentication
 - Register and login for students, teachers, and admins.
@@ -38,7 +38,7 @@ This project allows **teachers to create/manage courses and assignments**, while
 - Responsive tables, navigation menus, and buttons.
 ---
 
-## 🛠️ Tech Stack  
+##  Tech Stack  
 
 - **Frontend**: HTML, CSS  
 - **Backend**: Flask (Python)  
@@ -47,27 +47,27 @@ This project allows **teachers to create/manage courses and assignments**, while
 
 ---
 
-## 📂 Project Structure  
+##  Project Structure  
 
 e_learning_management_system/
-│-- app.py
-│-- models.py
-│-- templates/
-│ │-- index.html
-│ │-- login.html
-│ │-- dashboard.html
-│ │-- add_course.html
-│ │-- view_course.html
-│ │-- add_assignment.html
-│ │-- view_assignment.html
-│-- static/
-│ │-- style.css
-│-- README.md
+-- app.py
+-- models.py
+-- templates/
+   -- index.html
+   -- login.html
+   -- dashboard.html
+   -- add_course.html
+   -- view_course.html
+   -- add_assignment.html
+   -- view_assignment.html
+-- static/
+   -- style.css
+-- README.md
 
 
 ---
 
-## ⚡ How to Run Locally  
+##  How to Run Locally  
 
 1. Clone this repository  
    ```bash
