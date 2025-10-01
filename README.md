@@ -50,19 +50,19 @@ This project allows **teachers to create/manage courses and assignments**, while
 ##  Project Structure  
 ```bash
 e_learning_management_system/
--- app.py
--- models.py
--- templates/
-   -- index.html
-   -- login.html
-   -- dashboard.html
-   -- add_course.html
-   -- view_course.html
-   -- add_assignment.html
-   -- view_assignment.html
--- static/
-   -- style.css
--- README.md
+- app.py
+- models.py
+- templates/
+   - index.html
+   - login.html
+   - dashboard.html
+   - add_course.html
+   - view_course.html
+   - add_assignment.html
+   - view_assignment.html
+- static/
+   - style.css
+- README.md
 
 ---
 
