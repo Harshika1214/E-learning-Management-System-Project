@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Learning Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Welcome to E-Learning Management System</h1>
+    {% if 'user_id' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% if session['role'] == 'student' %}
+            <a href="{{ url_for('student_dashboard') }}">Student Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('teacher_dashboard') }}">Teacher/Admin Dashboard</a>
+        {% endif %}
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+</body>
+</html>

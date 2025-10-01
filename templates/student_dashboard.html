@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h1>Welcome, Student!</h1>
+
+<h2>Courses</h2>
+{% if courses %}
+    <ul>
+    {% for course in courses %}
+        <li>{{ course.title }} - {{ course.description }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No courses available.</p>
+{% endif %}
+
+<h2>Assignments</h2>
+{% if assignments %}
+    <ul>
+    {% for assignment in assignments %}
+        <li>{{ assignment.title }} ({{ assignment.course_obj.title }}): 
+        {{ assignment.description }} 
+        <a href="{{ url_for('submit_assignment', assignment_id=assignment.id) }}">Submit</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No assignments available.</p>
+{% endif %}
+
+<a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

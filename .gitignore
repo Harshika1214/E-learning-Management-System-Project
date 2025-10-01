@@ -1,0 +1,19 @@
+# Python / Flask
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+.env.* 
+
+# Database
+elearning.db
+*.db
+
+# Editor / OS
+.vscode/
+*.swp
+.DS_Store

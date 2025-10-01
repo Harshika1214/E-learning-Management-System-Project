@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Submissions</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2>Review Submissions</h2>
+<form method="POST">
+    {% for sub in submissions %}
+        <p><b>Student ID:</b> {{ sub.student_id }}<br>
+        <b>Content:</b> {{ sub.content }}</p>
+        Marks: <input type="number" name="marks_{{ sub.id }}" value="{{ sub.marks or 0 }}"><br>
+        Feedback: <textarea name="feedback_{{ sub.id }}">{{ sub.feedback or '' }}</textarea><br><hr>
+    {% endfor %}
+    <input type="submit" value="Submit Grades">
+</form>
+<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

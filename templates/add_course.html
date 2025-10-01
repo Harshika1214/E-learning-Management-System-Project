@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2>Add Course</h2>
+<form method="POST">
+    Title: <input type="text" name="title" required><br><br>
+    Description: <textarea name="description" required></textarea><br><br>
+    <input type="submit" value="Add Course">
+</form>
+<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

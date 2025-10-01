@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Assignment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2>Add Assignment</h2>
+<form method="POST">
+    Title: <input type="text" name="title" required><br><br>
+    Description: <textarea name="description" required></textarea><br><br>
+    Course:
+    <select name="course_id" required>
+        {% for course in courses %}
+        <option value="{{ course.id }}">{{ course.title }}</option>
+        {% endfor %}
+    </select><br><br>
+    <input type="submit" value="Add Assignment">
+</form>
+<a href="{{ url_for('teacher_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
