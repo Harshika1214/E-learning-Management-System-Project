@@ -47,9 +47,7 @@ This project allows **teachers to create/manage courses and assignments**, while
 
 ---
 
-##  Project Structure  
-```bash
-e_learning_management_system/
+## Project Structure
 - app.py
 - models.py
 - templates/
@@ -60,39 +58,37 @@ e_learning_management_system/
    - view_course.html
    - add_assignment.html
    - view_assignment.html
+   - edit_course.html
+   - edit_assignment.html
+   - submit_assignment.html
+   - review_submissions.html
 - static/
    - style.css
 - README.md
 
 ---
 
-##  How to run locally  
+## How to Run Locally
 
-1. Clone this repository  
-   ```bash
-   git clone https://github.com/Harshika1214/E-learning-Management-System-Project.git
-   cd E-learning-Management-System-Project
+1. Clone this repository:
+```bash
+git clone https://github.com/Harshika1214/E-learning-Management-System-Project.git
+cd E-learning-Management-System-Project
 
-2. Install dependencies
-   ```bash
-    pip install flask
+2. Install dependencies:
+pip install flask
 
-3. Run the project
-   ```bash
-   python app.py
+3. Run the project:
+python app.py
 
-4. Open in browser
-   ```bash
-   http://127.0.0.1:5000
+4. Open in browser:
+http://127.0.0.1:5000
 
 ---
 
 ## Future Improvements
--  Add quiz/exam feature
--  Student progress tracking
--  Email notifications for deadlines
--  Dark mode UI
 
-This project is created as part of learning Flask, Python, and web development. Open to contributions & improvements!
-
-
+-Add quiz/exam feature
+-Student progress tracking
+-Email notifications for deadlines
+-Dark mode UI
