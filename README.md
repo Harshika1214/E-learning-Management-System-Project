@@ -64,10 +64,9 @@ e_learning_management_system/
    -- style.css
 -- README.md
 
-
 ---
 
-##  How to Run Locally  
+##  How to run locally  
 
 1. Clone this repository  
    ```bash
