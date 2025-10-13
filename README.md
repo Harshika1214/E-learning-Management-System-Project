@@ -96,5 +96,13 @@ This project allows **teachers to create/manage courses and assignments**, while
 - Email notifications for deadlines  
 - Dark mode UI  
 
+---
+
+## Updates / Changelog
+
+ Added new feature: Course editing and improved UI  
+ Improved validations and access control  
+ Enhanced CSS for better user experience
+
 
 
