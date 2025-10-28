@@ -68,33 +68,16 @@ This project allows **teachers to create/manage courses and assignments**, while
 
 ---
 
-##  How to Run Locally  
+## How to Run Locally
 
-1. Clone this repository  
-   ```bash
-   git clone https://github.com/Harshika1214/E-learning-Management-System-Project.git
-   cd E-learning-Management-System-Project
+1. Clone this repository:
+```bash
+git clone https://github.com/Harshika1214/E-learning-Management-System-Project.git
+cd E-learning-Management-System-Project
+
+2. Install dependencies:
 
 
-2. Install dependencies  
-   ```bash
-   pip install flask
-
-3. Run the project  
-   ```bash
-   python app.py
-
-4. Open in browser  
-[http://127.0.0.1:5000](http://127.0.0.1:5000)
-
----
-
-## Future Improvements  
-
-- Add quiz/exam feature  
-- Student progress tracking  
-- Email notifications for deadlines  
-- Dark mode UI  
 
 
 
