@@ -53,6 +53,7 @@ This project allows **teachers to create/manage courses and assignments**, while
 - templates/
    - index.html
    - login.html
+   - register.html
    - dashboard.html
    - add_course.html
    - view_course.html
@@ -78,6 +79,14 @@ cd E-learning-Management-System-Project
 2. Install dependencies:
 
 
+
+---
+
+## Updates / Changelog
+
+ Added new feature: Course editing and improved UI  
+ Improved validations and access control  
+ Enhanced CSS for better user experience
 
 
 
