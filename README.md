@@ -53,6 +53,7 @@ This project allows **teachers to create/manage courses and assignments**, while
 - templates/
    - index.html
    - login.html
+   - register.html
    - dashboard.html
    - add_course.html
    - view_course.html
