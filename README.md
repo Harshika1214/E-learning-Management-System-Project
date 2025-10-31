@@ -87,16 +87,14 @@ cd E-learning-Management-System-Project
   
 
 2. Install dependencies  
-   ```bash
-   pip install flask
+```bash
+pip install flask
 
-## Run the project  
-
+3. Run the project  
 ```bash
 python app.py
 
-## Open in browser  
-
+4. Open in browser  
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 
