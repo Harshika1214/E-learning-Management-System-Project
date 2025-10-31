@@ -53,7 +53,6 @@ This project allows **teachers to create/manage courses and assignments**, while
 - templates/
    - index.html
    - login.html
-   - register.html
    - dashboard.html
    - add_course.html
    - view_course.html
@@ -88,32 +87,24 @@ cd E-learning-Management-System-Project
 
 2. Install dependencies:
 
-### 📸 Project Screenshots
+
+## Project_Images 
 
 Here are some screenshots showcasing the E-Learning Management System interface and functionality:
 
 | **Page** | **Preview** |
 |-----------|-------------|
-|  **Home Page** | ![Home Page](Project_Images/Home_page.png) |
-|  **Login Page** | ![Login Page](Project_Images/Login_page.png) |
-|  **Register Page** | ![Register Page](Project_Images/Register_page.png) |
-| ‍ **Teacher Dashboard** | ![Teacher Dashboard](Project_Images/Teacher_dashboard.png) |
-|  **Course Dashboard** | ![Course Dashboard](Project_Images/Course_dashboard.png) |
-|  **Assignment Dashboard** | ![Assignment Dashboard](Project_Images/Assignment_dashboard.png) |
-|  **Student Dashboard** | ![Student Dashboard](Project_Images/Student_dashboard.png) |
-|  **Review Submission Dashboard** | ![Review Submission Dashboard](Project_Images/Review_submission_dashboard.png) |
-|  **Result Dashboard** | ![Result Dashboard](Project_Images/Result_dashboard.png) |
+| **Home Page** | ![Home Page](Project_Images/Home_page.png) |
+| **Login Page** | ![Login Page](Project_Images/Login_page.png) |
+| **Register Page** | ![Register Page](Project_Images/Register_page.png) |
+| **Teacher Dashboard** | ![Teacher Dashboard](Project_Images/Teacher_dashboard.png) |
+| **Course Dashboard** | ![Course Dashboard](Project_Images/Course_dashboard.png) |
+| **Assignment Dashboard** | ![Assignment Dashboard](Project_Images/Assignment_dashboard.png) |
+| **Student Dashboard** | ![Student Dashboard](Project_Images/Student_dashboard.png) |
+| **Review Submission Dashboard** | ![Review Submission Dashboard](Project_Images/Review_submission_dashboard.png) |
+| **Result Dashboard** | ![Result Dashboard](Project_Images/Result_dashboard.png) |
 
 
-
-
----
-
-## Updates / Changelog
-
- Added new feature: Course editing and improved UI  
- Improved validations and access control  
- Enhanced CSS for better user experience
 
 
 
