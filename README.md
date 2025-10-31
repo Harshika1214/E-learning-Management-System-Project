@@ -87,6 +87,7 @@ cd E-learning-Management-System-Project
 
 2. Install dependencies:
 
+---
 
 ## Project_Images 
 
