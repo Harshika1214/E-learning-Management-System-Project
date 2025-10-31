@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Course, Assignment, Submission
+from models import db, User, Course, Assignment, Submission, Result
 from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key_here"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///elearning.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -31,44 +31,59 @@ def home():
     return render_template('home.html')
 
 # Registration
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method=='POST':
+    if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
         role = request.form['role']
 
-        if User.query.filter_by(email=email).first():
-            flash("User already exists!")
-            return redirect(url_for('register'))
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('⚠ Email already exists! Please login instead.', 'danger')
+            # return redirect(url_for('register')) ❌ Don’t redirect here — just re-render template
+            return render_template('register.html')
 
         hashed_password = generate_password_hash(password)
         new_user = User(name=name, email=email, password=hashed_password, role=role)
         db.session.add(new_user)
         db.session.commit()
-        flash("Registration successful. Please login.")
+
+        flash('✅ Registration successful! Please login.', 'success')
         return redirect(url_for('login'))
 
     return render_template('register.html')
 
+
+
 # Login
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method=='POST':
+    if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = User.query.filter_by(email=email).first()
-        if not user or not check_password_hash(user.password,password):
-            flash("Invalid credentials!")
-            return redirect(url_for('login'))
 
-        session['user_id'] = user.id
-        session['role'] = user.role
-        if user.role=='student':
-            return redirect(url_for('student_dashboard'))
+        user = User.query.filter_by(email=email).first()
+
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            session['role'] = user.role
+
+            flash("Login successful!", "success")
+
+            if user.role == 'student':
+                return redirect(url_for('student_dashboard'))
+            elif user.role == 'teacher':
+                return redirect(url_for('teacher_dashboard'))
+            elif user.role == 'admin':
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('index'))
+
         else:
-            return redirect(url_for('teacher_dashboard'))
+            flash("Invalid email or password!", "danger")
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
@@ -109,14 +124,14 @@ def edit_course(course_id):
         return redirect(url_for('view_courses'))
     return render_template('edit_course.html', course=course)
 
-@app.route('/delete-course/<int:course_id>', methods=['POST'])
-@login_required(role='teacher')
+@app.route('/delete_course/<int:course_id>', methods=['POST', 'GET'])
 def delete_course(course_id):
     course = Course.query.get_or_404(course_id)
     db.session.delete(course)
     db.session.commit()
-    flash("Course deleted successfully")
-    return redirect(url_for('view_courses'))
+    flash('Course deleted successfully!', 'success')
+    return redirect(url_for('teacher_dashboard'))
+
 
 # Add/Edit/Delete Assignment
 @app.route('/add-assignment', methods=['GET','POST'])
@@ -153,14 +168,14 @@ def edit_assignment(assignment_id):
         return redirect(url_for('view_assignments'))
     return render_template('edit_assignment.html', assignment=assignment, courses=courses)
 
-@app.route('/delete-assignment/<int:assignment_id>', methods=['POST'])
-@login_required(role='teacher')
+@app.route('/delete_assignment/<int:assignment_id>', methods=['GET', 'POST'])
 def delete_assignment(assignment_id):
     assignment = Assignment.query.get_or_404(assignment_id)
     db.session.delete(assignment)
     db.session.commit()
-    flash("Assignment deleted successfully")
-    return redirect(url_for('view_assignments'))
+    flash('Assignment deleted successfully!', 'success')
+    return redirect(url_for('teacher_dashboard'))
+
 
 # Student dashboard
 @app.route('/student-dashboard')
@@ -171,7 +186,7 @@ def student_dashboard():
     return render_template('student_dashboard.html', courses=courses, assignments=assignments)
 
 # Teacher dashboard
-@app.route('/teacher-dashboard')
+@app.route('/teacher_dashboard')
 @login_required(role='teacher')
 def teacher_dashboard():
     courses = Course.query.all()
@@ -192,18 +207,63 @@ def submit_assignment(assignment_id):
     return render_template('submit_assignment.html', assignment=assignment)
 
 # Review & Grade Submissions
-@app.route('/review-submissions/<int:assignment_id>', methods=['GET','POST'])
+@app.route('/review-submissions/<int:assignment_id>', methods=['GET', 'POST'])
 @login_required(role='teacher')
 def review_submissions(assignment_id):
+    assignment = Assignment.query.get_or_404(assignment_id)
     submissions = Submission.query.filter_by(assignment_id=assignment_id).all()
-    if request.method=='POST':
+
+    if request.method == 'POST':
+        # For every submission, save marks & feedback and also create/update Result
         for sub in submissions:
-            sub.marks = int(request.form.get(f'marks_{sub.id}', 0))
-            sub.feedback = request.form.get(f'feedback_{sub.id}', '')
+            marks_val = request.form.get(f'marks_{sub.id}', None)
+            feedback_val = request.form.get(f'feedback_{sub.id}', '').strip()
+
+            # Update submission object
+            if marks_val:
+                try:
+                    sub.marks = int(marks_val)
+                except ValueError:
+                    sub.marks = None
+            sub.feedback = feedback_val
+
+            # Get assignment title safely
+            assignment_title = assignment.title if assignment else "Untitled"
+
+            # Check if result already exists
+            existing_result = Result.query.filter_by(student_id=sub.student_id, assignment_id=assignment_id).first()
+
+            if existing_result:
+                existing_result.marks = sub.marks
+                existing_result.feedback = sub.feedback
+                existing_result.assignment_title = assignment_title
+            else:
+                new_result = Result(
+                    student_id=sub.student_id,
+                    assignment_id=assignment_id,
+                    assignment_title=assignment_title,
+                    marks=sub.marks,
+                    feedback=sub.feedback
+                )
+                db.session.add(new_result)
+
         db.session.commit()
-        flash("Submissions graded successfully")
+        flash("Submissions graded & results saved successfully!", "success")
         return redirect(url_for('teacher_dashboard'))
-    return render_template('review_submissions.html', submissions=submissions)
+
+    return render_template('review_submissions.html', assignment=assignment, submissions=submissions)
+
+
+@app.route('/results')
+@login_required(role='student')
+def view_results():
+    student_id = session.get('user_id')
+    results = Result.query.filter_by(student_id=student_id).order_by(Result.created_at.desc()).all()
+    # compute average
+    marks_list = [r.marks for r in results if r.marks is not None]
+    avg = int(sum(marks_list)/len(marks_list)) if marks_list else None
+    return render_template('results.html', results=results, avg=avg)
+
 
 # Run server
 if __name__=="__main__":

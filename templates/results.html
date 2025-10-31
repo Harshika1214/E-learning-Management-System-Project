@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="dashboard">
+    <h1>My Results</h1>
+
+    {% if results %}
+        <table>
+            <tr>
+                <th>Assignment Title</th>
+                <th>Marks</th>
+                <th>Feedback</th>
+                <th>Date</th>
+            </tr>
+            {% for r in results %}
+            <tr>
+                <td>{{ r.assignment_title if r.assignment_title else 'N/A' }}</td>
+                <td>{{ r.marks }}</td>
+                <td>{{ r.feedback }}</td>
+                <td>{{ r.created_at.strftime('%Y-%m-%d') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if avg %}
+            <p><strong>Average Marks:</strong> {{ avg }}</p>
+        {% endif %}
+    {% else %}
+        <p>No results yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('student_dashboard') }}" class="btn">Back to Dashboard</a>
+</div>
+</body>
+</html>

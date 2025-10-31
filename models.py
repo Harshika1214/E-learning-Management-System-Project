@@ -14,14 +14,29 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    assignments = db.relationship('Assignment', backref='course_obj', lazy=True)
+
+    # When a Course is deleted, delete its assignments automatically
+    assignments = db.relationship(
+        'Assignment',
+        backref='course_obj',
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
+
 
 class Assignment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
-    submissions = db.relationship('Submission', backref='assignment_obj', lazy=True)
+
+    # When an Assignment is deleted, delete its submissions automatically
+    submissions = db.relationship(
+        'Submission',
+        backref='assignment_obj',
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
 
 class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,3 +46,12 @@ class Submission(db.Model):
     submission_date = db.Column(db.DateTime, default=datetime.utcnow)
     marks = db.Column(db.Integer, nullable=True)
     feedback = db.Column(db.Text, nullable=True)
+
+class Result(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    assignment_id = db.Column(db.Integer, db.ForeignKey('assignment.id'), nullable=False)
+    assignment_title = db.Column(db.String(255))
+    marks = db.Column(db.Integer)
+    feedback = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
