@@ -65,6 +65,16 @@ This project allows **teachers to create/manage courses and assignments**, while
    - review_submissions.html
 - static/
    - style.css
+- Project_Images
+   - Home_page.png
+   - Login_page.png
+   - Register_page.png
+   - Teacher_dashboard.png
+   - Course_dashboard.png
+   - Assignment_dashboard.png
+   - Student_dashboard.png
+   - Review_submission_dashboard.png
+   - Result_dashboard.png
 - README.md
 
 ---
@@ -96,4 +106,20 @@ This project allows **teachers to create/manage courses and assignments**, while
  Improved validations and access control  
  Enhanced CSS for better user experience
 
+---
 
+## Project Screenshots
+
+Here are some screenshots showcasing the E-Learning Management System interface and functionality.
+
+| **Page** | **Preview** |
+|-----------|-------------|
+| **Home Page** | ![Home Page](Project_Images/Home_page.png) |
+| **Login Page** | ![Login Page](Project_Images/Login_page.png) |
+| **Register Page** | ![Register Page](Project_Images/Register_page.png) |
+| **Teacher Dashboard** | ![Teacher Dashboard](Project_Images/Teacher_dashboard.png) |
+| **Course Dashboard** | ![Course Dashboard](Project_Images/Course_dashboard.png) |
+| **Assignment Dashboard** | ![Assignment Dashboard](Project_Images/Assignment_dashboard.png) |
+| **Student Dashboard** | ![Student Dashboard](Project_Images/Student_dashboard.png) |
+| **Review Submission Dashboard** | ![Review Submission Dashboard](Project_Images/Review_submission_dashboard.png) |
+| **Result Dashboard** | ![Result Dashboard](Project_Images/Result_dashboard.png) |
