@@ -53,6 +53,7 @@ This project allows **teachers to create/manage courses and assignments**, while
 - templates/
    - index.html
    - login.html
+   - register.html
    - dashboard.html
    - add_course.html
    - view_course.html
@@ -64,16 +65,6 @@ This project allows **teachers to create/manage courses and assignments**, while
    - review_submissions.html
 - static/
    - style.css
-- Project_Images/
-   -Home_page.png
-   -Login_page.png
-   -Register_dashboard.png
-   -Teacher_dashboard.png
-   -Course_dashboard.png
-   -Assignment_dashboard.png
-   -Student_dashboard.png
-   -Review_submission_dashboard.png
-   -Result_dashboard.png
 - README.md
 
 ---
@@ -84,23 +75,17 @@ This project allows **teachers to create/manage courses and assignments**, while
 ```bash
 git clone https://github.com/Harshika1214/E-learning-Management-System-Project.git
 cd E-learning-Management-System-Project
-  
 
-2. Install dependencies  
-```bash
-pip install flask
-
-3. Run the project  
-```bash
-python app.py
-
-4. Open in browser  
-[http://127.0.0.1:5000](http://127.0.0.1:5000)
+2. Install dependencies:
 
 
 
+---
 
+## Updates / Changelog
 
-
+ Added new feature: Course editing and improved UI  
+ Improved validations and access control  
+ Enhanced CSS for better user experience
 
 
