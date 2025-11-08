@@ -41,8 +41,8 @@ def register():
 
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('⚠ Email already exists! Please login instead.', 'danger')
-            # return redirect(url_for('register')) ❌ Don’t redirect here — just re-render template
+            flash('Email already exists! Please login instead.', 'danger')
+            
             return render_template('register.html')
 
         hashed_password = generate_password_hash(password)
@@ -50,7 +50,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash('✅ Registration successful! Please login.', 'success')
+        flash(' Registration successful! Please login.', 'success')
         return redirect(url_for('login'))
 
     return render_template('register.html')
